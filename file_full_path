@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.portal.mapper.MetricsMapper">
+
+    <resultMap id="MetricsResultMap" type="com.example.portal.entity.Metrics">
+        <id property="id" column="id"/>
+        <result property="metricId" column="metric_id"/>
+        <result property="nodeId" column="node_id"/>
+        <result property="metricCategory" column="metric_category"/>
+        <result property="categoryId" column="category_id"/>
+        <result property="parentId" column="parent_id"/>
+        <result property="metricName" column="metric_name"/>
+        <result property="createUser" column="create_user"/>
+        <result property="updateUser" column="update_user"/>
+        <result property="createDate" column="create_date"/>
+        <result property="updateDate" column="update_date"/>
+    </resultMap>
+
+</mapper>

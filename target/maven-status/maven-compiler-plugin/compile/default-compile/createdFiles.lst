@@ -1,0 +1,7 @@
+com\example\portal\service\DataCategoryService.class
+com\example\portal\controller\DataCategoryController.class
+com\example\portal\mapper\DataCategoryMapper.class
+com\example\portal\service\impl\DataCategoryServiceImpl.class
+com\example\portal\PortalApplication.class
+com\example\portal\entity\DataCategory.class
+com\example\portal\config\OpenApiConfig.class

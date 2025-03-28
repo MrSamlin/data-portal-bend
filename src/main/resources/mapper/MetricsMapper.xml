@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.portal.mapper.MetricsMapper">
+    <resultMap id="MetricsResultMap" type="com.example.portal.entity.Metrics">
+        <id property="id" column="id"/>
+        <result property="metricsCode" column="metrics_code"/>
+        <result property="metricName" column="metric_name"/>
+        <result property="parentId" column="parent_id"/>
+        <result property="createUser" column="create_user"/>
+        <result property="updateUser" column="update_user"/>
+        <result property="createDate" column="create_date"/>
+        <result property="updateDate" column="update_date"/>
+        <result column="theme_code" property="themeCode"/>
+    </resultMap>
+
+
+
+    <select id="selectAll"  resultMap="MetricsResultMap">
+        SELECT  *
+        FROM metrics
+        <where>
+            1=1
+            <if test="metricName != null and metricName != ''">
+                AND metric_name LIKE CONCAT('%', #{metricName}, '%')
+            </if>
+        </where>
+        ORDER BY create_date DESC
+        LIMIT #{size} OFFSET  #{currentPage}
+    </select>
+
+    <select id="countAll"  resultType="java.lang.Integer">
+        SELECT  count(*) FROM metrics
+        <where>
+            1=1
+            <if test="metricName != null and metricName != ''">
+                AND metric_name LIKE CONCAT('%', #{metricName}, '%')
+            </if>
+        </where>
+    </select>
+</mapper>
