@@ -14,13 +14,13 @@ public interface MetricsMapper {
 
 
     @Insert("INSERT INTO data_portal.metrics " +
-            "( metrics_code, metric_name, parent_id, create_user, update_user, create_date, update_date) " +
-            "VALUES( #{metricsCode}, #{metricName}, #{parentId}, #{createUser}, #{updateUser},  NOW(), NOW())")
+            "( metrics_code, metric_name, parent_id, create_user, update_user, create_date, update_date, category_name ) " +
+            "VALUES( #{metricsCode}, #{metricName}, #{parentId}, #{createUser}, #{updateUser},  NOW(), NOW(), #{categoryName} )")
     int insert(Metrics metrics);
 
 
     @Update("UPDATE metrics SET metrics_code = #{metricsCode}, metric_name = #{metricName}, parent_id = #{parentId}, update_user = #{updateUser}, " +
-            " update_date =NOW()  WHERE id = #{id}")
+            " update_date =NOW() , category_name = #{categoryName} WHERE id = #{id}")
     int update(Metrics metrics);
 
 
@@ -38,4 +38,7 @@ public interface MetricsMapper {
 
 
     List<Metrics> selectAll(QueryDao query);
+
+
+    List<Metrics> getMetricsTopList(  @Param("categoryName")String categoryName);
 }

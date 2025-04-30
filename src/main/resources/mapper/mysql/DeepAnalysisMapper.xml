@@ -6,7 +6,7 @@
 <mapper namespace="com.example.portal.mapper.DeepAnalysisMapper">
     <resultMap id="DeepAnalysisResultMap" type="com.example.portal.entity.DeepAnalysis">
         <id column="id" property="id"/>
-        <result column="analysis_dimension" property="analysisDimension"/>
+        <result column="analysis_name" property="analysisName"/>
         <result column="jump_url" property="jumpUrl"/>
         <result column="view_count" property="viewCount"/>
         <result column="status" property="status"/>
@@ -15,16 +15,16 @@
         <result column="update_date" property="updateDate"/>
         <result column="create_user" property="createUser"/>
         <result column="update_user" property="updateUser"/>
-        <result column="theme_code" property="themeCode"/>
+        <result column="category_name" property="categoryName"/>
     </resultMap>
 
     <select id="selectAll"   resultMap="DeepAnalysisResultMap">
-        SELECT id, analysis_dimension, jump_url, view_count, status, publish_date,
-        create_date, update_date, create_user, update_user,theme_code FROM deep_analysis
+        SELECT id, analysis_name, jump_url, view_count, status, publish_date,
+        create_date, update_date, create_user, update_user,category_name FROM deep_analysis
         <where>
             1=1
-            <if test="analysisDimension != null and analysisDimension != ''">
-                AND analysis_dimension LIKE CONCAT('%', #{analysisDimension}, '%')
+            <if test="analysisName != null and analysisName != ''">
+                AND analysis_name LIKE CONCAT('%', #{analysisName}, '%')
             </if>
         </where>
         ORDER BY create_date DESC
@@ -32,12 +32,26 @@
     </select>
 
 
+    <select id="getDeepAnalysisTopList"   resultMap="DeepAnalysisResultMap">
+        SELECT id, analysis_name, jump_url, view_count, status, publish_date,
+        create_date, update_date, create_user, update_user,category_name FROM deep_analysis
+        <where>
+            status = 1
+            <if test="categoryName != null and categoryName != ''">
+                AND category_name LIKE CONCAT('%', #{categoryName}, '%')
+            </if>
+        </where>
+        ORDER BY create_date DESC
+        LIMIT   #{contentSize} OFFSET   0
+    </select>
+
+
     <select id="countAll"   resultType="java.lang.Integer">
         SELECT  COUNT(*) FROM deep_analysis
         <where>
             1=1
-            <if test="analysisDimension != null and analysisDimension != ''">
-                AND analysis_dimension LIKE CONCAT('%', #{analysisDimension}, '%')
+            <if test="analysisName != null and analysisName != ''">
+                AND analysis_name LIKE CONCAT('%', #{analysisName}, '%')
             </if>
         </where>
     </select>

@@ -63,7 +63,7 @@
                 AND category_name LIKE CONCAT('%', #{categoryName}, '%')
             </if>
         </where>
-        ORDER BY  display_order,updated_at ASC
+        ORDER BY  display_order,created_at  ASC
             LIMIT   #{size} OFFSET   #{currentPage}
     </select>
 

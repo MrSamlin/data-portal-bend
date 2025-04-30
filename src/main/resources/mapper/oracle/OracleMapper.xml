@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.portal.mapper.oracle.OracleMapper">
+        <resultMap id="IndicatorResultMap" type="com.example.portal.entity.Indicator">
+            <!-- 映射复合主键类 -->
+            <id property="industryName" column="INDUSTRY_NAME" />
+            <id property="indicatorType" column="INDICATOR_TYPE" />
+            <!-- 映射其他字段 -->
+            <result property="countCode" column="COUNT_CODE" />
+            <result property="rownumOfIndicatorType" column="ROWNUM_OF_INDICATOR_TYPE" />
+
+        </resultMap>
+
+    <!-- 示例查询 -->
+    <select id="fetchIndicatorDataByIndustry" resultMap="IndicatorResultMap">
+        SELECT
+       *
+        FROM VW_INDUSTRY_INDICATOR_STATS
+        WHERE INDUSTRY_NAME = #{industryName}    LIMIT  #{indicatorRows}   OFFSET   0
+    </select>
+</mapper>
