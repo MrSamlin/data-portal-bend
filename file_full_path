@@ -3,9 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.portal.mapper.mysql.MetricsMapper">
+<mapper namespace="mysql.mapper.com.cmfchina.dataportal.MetricsMapper">
 
-    <resultMap id="MetricsResultMap" type="com.example.portal.entity.Metrics">
+    <resultMap id="MetricsResultMap" type="entity.com.cmfchina.dataportal.Metrics">
         <id property="id" column="id"/>
         <result property="metricId" column="metric_id"/>
         <result property="nodeId" column="node_id"/>
