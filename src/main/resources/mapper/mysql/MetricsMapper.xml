@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.portal.mapper.MetricsMapper">
+<mapper namespace="com.example.portal.mapper.mysql.MetricsMapper">
     <resultMap id="MetricsResultMap" type="com.example.portal.entity.Metrics">
         <id property="id" column="id"/>
         <result property="metricsCode" column="metrics_code"/>
@@ -14,13 +14,13 @@
         <result property="createDate" column="create_date"/>
         <result property="updateDate" column="update_date"/>
         <result column="category_name" property="categoryName"/>
+        <result column="theme_code" property="themeCode"/>
     </resultMap>
-
 
 
     <select id="selectAll"  resultMap="MetricsResultMap">
         SELECT  *
-        FROM metrics
+        FROM data_metrics
         <where>
             1=1
             <if test="metricName != null and metricName != ''">
@@ -32,7 +32,7 @@
     </select>
 
     <select id="countAll"  resultType="java.lang.Integer">
-        SELECT  count(*) FROM metrics
+        SELECT  count(*) FROM data_metrics
         <where>
             1=1
             <if test="metricName != null and metricName != ''">
@@ -44,11 +44,11 @@
 
     <select id="getMetricsTopList"  resultMap="MetricsResultMap">
         SELECT  *
-        FROM metrics
+        FROM data_metrics
         <where>
             1=1
-            <if test="categoryName != null and categoryName != ''">
-                AND category_name LIKE CONCAT('%', #{categoryName}, '%')
+            <if test="themeCode != null and themeCode != ''">
+                AND theme_code   = #{themeCode}
             </if>
         </where>
         ORDER BY create_date DESC

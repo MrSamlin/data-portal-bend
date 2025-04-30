@@ -9,12 +9,16 @@ public class QueryDao {
     int currentPage;
     int size;
 
-    String analysisDimension;
+    String analysisName;
 
     String categoryName;
 
     String metricName;
 
     String themeCode;
+
+    String title;
+
+    String value;
 
 }

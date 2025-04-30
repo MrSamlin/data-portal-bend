@@ -22,6 +22,9 @@ public interface MetricsService {
     // 查询所有数据分类
     List<Metrics> selectAll(QueryDao dao);
 
+    // 获取具体行业前四指标
+    List<Metrics> getMetricsTopList(String themeCode);
+
     int countAll(String metricName);
 
 

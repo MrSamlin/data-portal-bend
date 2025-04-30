@@ -1,7 +1,6 @@
 package com.example.portal.controller;
 
 import com.example.portal.entity.DataCategory;
-import com.example.portal.entity.DeepAnalysis;
 import com.example.portal.entity.QueryDao;
 import com.example.portal.entity.Result;
 import com.example.portal.service.DataCategoryService;
@@ -9,13 +8,14 @@ import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 /**
  * 数据分类控制器
  */
 @RestController
-@RequestMapping("/api/categories")
+@RequestMapping("/categories")
 public class DataCategoryController {
 
     @Autowired

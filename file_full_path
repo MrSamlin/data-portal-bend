@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.portal.mapper.MetricsMapper">
+<mapper namespace="com.example.portal.mapper.mysql.MetricsMapper">
 
     <resultMap id="MetricsResultMap" type="com.example.portal.entity.Metrics">
         <id property="id" column="id"/>

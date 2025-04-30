@@ -1,6 +1,5 @@
-package com.example.portal.mapper;
+package com.example.portal.mapper.mysql;
 
-import com.example.portal.entity.DataCategory;
 import com.example.portal.entity.IndustryMap;
 import com.example.portal.entity.QueryDao;
 import org.apache.ibatis.annotations.Mapper;

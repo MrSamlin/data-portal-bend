@@ -22,5 +22,7 @@ public interface DeepAnalysisService {
     // 查询所有数据分类
     List<DeepAnalysis> selectAll(QueryDao dao);
 
-      int countAll(String analysisDimension);
+      int countAll(String analysisName);
+
+    List<DeepAnalysis> getDeepAnalysisTopList(String themeCode);
 }

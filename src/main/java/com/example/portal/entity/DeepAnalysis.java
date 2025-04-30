@@ -12,12 +12,12 @@ import java.util.Date;
  * 深度分析实体类
  */
 @Data
-@Table(name = "deep_analysis")
+@Table(name = "data_deep_analysis")
 public class DeepAnalysis {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String analysisDimension;
+    private String analysisName;
     private String jumpUrl;
     private Integer viewCount;
     private String status;
@@ -26,8 +26,7 @@ public class DeepAnalysis {
     private Date updateDate;
     private String createUser;
     private String updateUser;
-
-    private String themeCode;
+    private String categoryName;
 
 
 }

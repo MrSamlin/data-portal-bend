@@ -2,7 +2,7 @@ package com.example.portal.service.impl;
 
 import com.example.portal.entity.Metrics;
 import com.example.portal.entity.QueryDao;
-import com.example.portal.mapper.MetricsMapper;
+import com.example.portal.mapper.mysql.MetricsMapper;
 import com.example.portal.service.MetricsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,6 +39,11 @@ public class MetricsServiceImpl implements MetricsService {
     @Override
     public List<Metrics> selectAll(QueryDao dao ) {
         return metricsMapper.selectAll(dao);
+    }
+
+    @Override
+    public List<Metrics> getMetricsTopList(String themeCode) {
+        return metricsMapper.getMetricsTopList(themeCode);
     }
 
     @Override

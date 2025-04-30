@@ -2,9 +2,8 @@ package com.example.portal.service.impl;
 
 import com.example.portal.entity.DataCategory;
 import com.example.portal.entity.QueryDao;
-import com.example.portal.mapper.DataCategoryMapper;
+import com.example.portal.mapper.mysql.DataCategoryMapper;
 import com.example.portal.service.DataCategoryService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -27,8 +26,6 @@ public class DataCategoryServiceImpl implements DataCategoryService {
     @Override
     @Transactional
     public DataCategory createCategory(DataCategory category) {
-
-
         // 设置默认值
         if (category.getDisplayOrder() == null) {
             category.setDisplayOrder(0);
@@ -36,7 +33,6 @@ public class DataCategoryServiceImpl implements DataCategoryService {
         if (category.getIsVisible() == null) {
             category.setIsVisible(1);
         }
-
         dataCategoryMapper.insert(category);
         return category;
     }

@@ -3,9 +3,10 @@ package com.example.portal.service.impl;
 
 import com.example.portal.entity.DeepAnalysis;
 import com.example.portal.entity.QueryDao;
-import com.example.portal.mapper.DeepAnalysisMapper;
+import com.example.portal.mapper.mysql.DeepAnalysisMapper;
 import com.example.portal.service.DeepAnalysisService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +18,9 @@ public class DeepAnalysisServiceImpl implements DeepAnalysisService {
 
     @Autowired
     private DeepAnalysisMapper deepAnalysisMapper;
+
+    @Value("${mybatis.content.limit}")
+    private Integer contentSize;
 
 
     @Override
@@ -45,7 +49,12 @@ public class DeepAnalysisServiceImpl implements DeepAnalysisService {
     }
 
     @Override
-    public int countAll(String analysisDimension) {
-        return deepAnalysisMapper.countAll(analysisDimension);
+    public int countAll(String analysisName) {
+        return deepAnalysisMapper.countAll(analysisName);
     }
+    @Override
+    public List<DeepAnalysis> getDeepAnalysisTopList(String categoryName) {
+        return deepAnalysisMapper.getDeepAnalysisTopList(categoryName,contentSize);
+    }
+
 }

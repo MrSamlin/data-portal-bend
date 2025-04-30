@@ -12,19 +12,19 @@ import java.util.Date;
  * 指标实体类
  */
 @Data
-@Table(name = "metrics")
+@Table(name = "data_metrics")
 public class Metrics {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Long metricsCode;
+    private String metricsCode;
     private String metricName;
     private Long parentId;
     private String createUser;
     private String updateUser;
     private Date createDate;
     private Date updateDate;
-
+    private String categoryName;
     private String themeCode;
 
 }

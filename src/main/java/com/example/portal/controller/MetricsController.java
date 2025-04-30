@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/metrics")
+@RequestMapping("/metrics")
 public class MetricsController {
 
     @Autowired
@@ -33,6 +33,13 @@ public class MetricsController {
         return result;
     }
 
+
+
+    @GetMapping("/topList/{themeCode}")
+    public List<Metrics> getMetricsTopList(@PathVariable String themeCode) {
+        List<Metrics> data = metricsService.getMetricsTopList(themeCode);
+        return data;
+    }
 
     // 根据ID查询数据分类
     @GetMapping("/{categoryId}")

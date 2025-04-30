@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/deepAnalysis")
+@RequestMapping("/deepAnalysis")
 public class DeepAnalysisController {
 
     @Autowired
@@ -21,7 +21,7 @@ public class DeepAnalysisController {
     @PostMapping("/list")
     public Result<List<DeepAnalysis>> getAllDeepAnalysis(@RequestBody QueryDao query) {
         List<DeepAnalysis> data = deepAnalysisService.selectAll(query);
-        long total = deepAnalysisService.countAll(query.getAnalysisDimension()); // 需确保Service层提供总数查询方法
+        long total = deepAnalysisService.countAll(query.getAnalysisName()); // 需确保Service层提供总数查询方法
         Result<List<DeepAnalysis>> result = new Result<>();
         result.setData(data);
         result.setTotal(total);
@@ -57,6 +57,11 @@ public class DeepAnalysisController {
         return deepAnalysisService.deleteById(deepAnalysisId);
     }
 
+
+    @GetMapping("/topList/{themeCode}")
+    public List<DeepAnalysis> getDeepAnalysisTopList(@PathVariable String themeCode) {
+        return deepAnalysisService.getDeepAnalysisTopList(themeCode);
+    }
 //
 //    /**
 //     * 搜索分类

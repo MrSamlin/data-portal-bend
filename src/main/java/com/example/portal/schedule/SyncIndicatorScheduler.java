@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 @Component
-public class SynIndicatorScheduler {
+public class SyncIndicatorScheduler {
 
-    private static final Logger log = LoggerFactory.getLogger(SynIndicatorScheduler.class);
+    private static final Logger log = LoggerFactory.getLogger(SyncIndicatorScheduler.class);
 
     // 每5秒执行一次
     @Scheduled(fixedRate = 5000)

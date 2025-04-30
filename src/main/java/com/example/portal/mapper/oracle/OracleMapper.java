@@ -1,16 +1,27 @@
 package com.example.portal.mapper.oracle;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import com.example.portal.entity.Indicator;
+import org.apache.ibatis.annotations.*;
+
 import java.util.List;
 import java.util.Map;
 
 @Mapper
-public interface OracleTestMapper {
-    // 示例：查询 Oracle 数据库中的表
-    @Select("SELECT * FROM your_oracle_table WHERE id = #{id}")
-    Map<String, Object> selectById(Long id);
+public interface OracleMapper {
 
-    // 或者使用 XML 映射（推荐复杂 SQL）
-    List<Map<String, Object>> selectAll();
+    @Results(id = "indicatorResultMap", value = {
+            @Result(property = "industryName", column = "industry_name"),
+            @Result(property = "indicatorType", column = "indicator_type"),
+            @Result(property = "countCode", column = "count_code"),
+            @Result(property = "rownumOfIndicatorType", column = "rownum_of_indicator_type"),
+            @Result(property = "rownum", column = "rownum")
+    })
+    @Select(" select industry_name, indicator_type, count_code, rownum_of_indicator_type, rownum " +
+       " from ( "+
+            "  select industry_name, indicator_type, count_code, rownum_of_indicator_type " +
+            "  from vw_industry_indicator_stats " +
+            "   where industry_name =#{industryName} " +
+            " ) data  " +
+            "  where rownum <=#{indicatorRows} " )
+    List<Indicator> fetchIndicatorDataByIndustry(@Param("industryName") String industryName, @Param("indicatorRows")Integer indicatorRows);
 }
