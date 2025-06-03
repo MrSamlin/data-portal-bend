@@ -20,6 +20,7 @@
         <result column="updated_at" property="updatedAt" />
         <result column="theme_code" property="themeCode" />
 
+
     </resultMap>
 
     <insert id="insert">
@@ -63,7 +64,7 @@
                 AND category_name LIKE CONCAT('%', #{categoryName}, '%')
             </if>
         </where>
-        ORDER BY  display_order,created_at  ASC
+        ORDER BY  display_order ASC ,created_at  DESC
             LIMIT   #{size} OFFSET   #{currentPage}
     </select>
 
@@ -71,7 +72,7 @@
     <select id="getCategoriesTopList"  resultMap="BaseResultMap">
         SELECT *
         FROM data_categories  where is_visible = 1
-        ORDER BY display_order,updated_at  ASC  LIMIT  #{topLimit}   OFFSET   0
+        ORDER BY display_order,updated_at  ASC
     </select>
 
 

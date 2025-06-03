@@ -8,6 +8,7 @@
         <id property="id" column="id"/>
         <result property="metricsCode" column="metrics_code"/>
         <result property="metricName" column="metric_name"/>
+        <result property="metricType" column="metric_type"/>
         <result property="parentId" column="parent_id"/>
         <result property="createUser" column="create_user"/>
         <result property="updateUser" column="update_user"/>
@@ -15,8 +16,12 @@
         <result property="updateDate" column="update_date"/>
         <result column="category_name" property="categoryName"/>
         <result column="theme_code" property="themeCode"/>
+        <result column="display_order" property="displayOrder"/>
+        <result column="tag" property="tag"/>
+        <result column="is_Visible" property="isVisible"/>
+        <result column="data_source" property="dataSource"/>
+        <result column="indicator_code" property="indicatorCode"/>
     </resultMap>
-
 
     <select id="selectAll"  resultMap="MetricsResultMap">
         SELECT  *
@@ -35,8 +40,8 @@
         SELECT  count(*) FROM data_metrics
         <where>
             1=1
-            <if test="metricName != null and metricName != ''">
-                AND metric_name LIKE CONCAT('%', #{metricName}, '%')
+            <if test="metricsName != null and metricsName != ''">
+                AND metric_name LIKE CONCAT('%', #{metricsName}, '%')
             </if>
         </where>
     </select>
@@ -46,7 +51,7 @@
         SELECT  *
         FROM data_metrics
         <where>
-            1=1
+            is_Visible =1
             <if test="themeCode != null and themeCode != ''">
                 AND theme_code   = #{themeCode}
             </if>
@@ -55,5 +60,18 @@
         LIMIT  4 OFFSET  0
     </select>
 
+
+
+    <select id="getMetricsDataByMetricType"  resultMap="MetricsResultMap">
+        SELECT  *
+        FROM data_metrics
+        <where>
+            metric_type = #{metricType}
+            <if test="themeCode != null and themeCode != ''">
+                AND theme_code   = #{themeCode}
+            </if>
+        </where>
+        ORDER BY create_date DESC
+    </select>
 
 </mapper>

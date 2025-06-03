@@ -21,4 +21,7 @@ public class QueryDao {
 
     String value;
 
+    String parentId;
+
+    String indicatorCode;
 }

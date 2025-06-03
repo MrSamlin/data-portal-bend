@@ -26,6 +26,7 @@ public interface MetricsService {
     List<Metrics> getMetricsTopList(String themeCode);
 
     int countAll(String metricName);
+    List<Metrics> getMetricsDataByMetricType(Metrics metrics);
 
 
 }

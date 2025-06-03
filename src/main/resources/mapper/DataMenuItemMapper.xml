@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cmfchina.dataportal.mapper.DataMenuItemMapper">
+    <resultMap id="TopMenuItemResultMap" type="com.cmfchina.dataportal.entity.DataMenuItem">
+        <id column="id" property="id" />
+        <result column="title" property="title" />
+        <result column="type" property="type" />
+        <result column="sort_order" property="sortOrder" />
+        <result column="status" property="status" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="is_group" property="isGroup" />
+        <result column="icon_url" property="iconUrl" />
+    </resultMap>
+
+
+    <resultMap id="ChildMenuItemResultMap" type="com.cmfchina.dataportal.entity.DataMenuItem">
+        <id column="id" property="id" />
+        <result column="parent_id" property="parentId" />
+        <result column="title" property="title" />
+        <result column="link" property="link" />
+        <result column="type" property="type" />
+        <result column="is_group" property="isGroup" />
+        <result column="sort_order" property="sortOrder" />
+        <result column="status" property="status" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="parent_name" property="parentName" />
+    </resultMap>
+
+    <select id="getTopMenuItemList"  resultMap="TopMenuItemResultMap">
+        SELECT  *
+        FROM data_menu_items
+        <where>
+            is_group = 1 and status =1
+            <if test="title != null and title != ''">
+                AND title LIKE CONCAT('%', #{title}, '%')
+            </if>
+        </where>
+        ORDER  BY Sort_order ASC, create_time DESC
+        LIMIT #{size} OFFSET  #{currentPage}
+    </select>
+
+    <select id="countTopList"  resultType="java.lang.Integer">
+        SELECT  count(*) FROM data_menu_items
+        <where>
+            is_group = 1
+            <if test="title != null and title != ''">
+                AND title LIKE CONCAT('%', #{title}, '%')
+            </if>
+        </where>
+       ORDER  BY Sort_order ASC
+    </select>
+
+
+
+
+    <select id="getChildMenuItemList"  resultMap="ChildMenuItemResultMap">
+        SELECT  t.id,t.parent_id,t.title,t.link,t.type,
+        t.is_group,t.sort_order,t.status,t.create_time,t.update_time,
+        (select title from data_menu_items where id = t.parent_id) as parent_name
+        FROM data_menu_items t
+        <where>
+            is_group != 1
+            <if test="parentId != null and parentId != ''">
+            and parent_id = #{parentId}
+            </if>
+            <if test="title != null and title != ''">
+                AND title LIKE CONCAT('%', #{title}, '%')
+            </if>
+        </where>
+        ORDER BY create_time DESC
+        LIMIT #{size} OFFSET  #{currentPage}
+    </select>
+
+    <select id="countChildList"  resultType="java.lang.Integer">
+        SELECT  count(*) FROM data_menu_items
+        <where>
+            is_group != 1 and parent_id = #{parentId}
+            <if test="title != null and title != ''">
+                AND title LIKE CONCAT('%', #{title}, '%')
+            </if>
+        </where>
+    </select>
+
+</mapper>

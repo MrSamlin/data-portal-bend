@@ -1,7 +1,5 @@
 package com.cmfchina.dataportal.entity;
 
-import javax.persistence.*;
-
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -11,13 +9,10 @@ import java.time.LocalDateTime;
  */
 
 @Data
-@Table(name = "data_categories")
 public class DataCategory {
     /**
      * 分类ID - 主键
      */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer categoryId;
     
     /**

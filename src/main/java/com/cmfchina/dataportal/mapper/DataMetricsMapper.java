@@ -13,15 +13,17 @@ import java.util.List;
 public interface DataMetricsMapper {
 
 
-    @Insert("INSERT INTO data_portal.data_metrics " +
-            "( metrics_code, metric_name, parent_id, create_user, update_user, create_date, update_date, category_name,theme_code ) " +
-            "VALUES( #{metricsCode}, #{metricName}, #{parentId}, #{createUser}, #{updateUser},  NOW(), NOW(), #{categoryName}, #{themeCode} )")
+    @Insert("INSERT INTO  data_metrics " +
+            "( metrics_code, metric_name, parent_id, create_user, update_user, create_date, update_date, category_name,theme_code,display_order,tag,is_Visible,metric_type,data_source,indicator_code ) " +
+            "VALUES( #{metricsCode}, #{metricName}, #{parentId}, #{createUser}, #{updateUser},  NOW(), NOW(), #{categoryName}, #{themeCode}, #{displayOrder}, #{tag},#{isVisible},#{metricType},#{dataSource}, #{indicatorCode})")
     int insert(Metrics metrics);
 
 
     @Update("UPDATE data_metrics SET metrics_code = #{metricsCode},theme_code = #{themeCode}, metric_name = #{metricName}, parent_id = #{parentId}, update_user = #{updateUser}, " +
-            " update_date =NOW() , category_name = #{categoryName} WHERE id = #{id}")
+            " update_date =NOW() , category_name = #{categoryName} ,display_order =#{displayOrder} ,tag=#{tag},is_Visible= #{isVisible},metric_type=#{metricType},data_source=#{dataSource},indicator_code=#{indicatorCode}  WHERE id = #{id}")
     int update(Metrics metrics);
+
+
 
 
     @Delete("DELETE FROM data_metrics WHERE id = #{id}")
@@ -34,11 +36,17 @@ public interface DataMetricsMapper {
 
 
 
-    int countAll(String metricsName);
+    int countAll( @Param("metricsName")String metricsName);
 
 
     List<Metrics> selectAll(QueryDao query);
 
 
     List<Metrics> getMetricsTopList(  @Param("themeCode")String themeCode);
+
+
+    List<Metrics> getMetricsDataByMetricType( Metrics metrics);
+
+
+
 }

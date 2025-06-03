@@ -50,4 +50,9 @@ public class MetricsServiceImpl implements MetricsService {
     public int countAll(String metricName) {
         return dataMetricsMapper.countAll(metricName);
     }
+
+    @Override
+    public  List<Metrics> getMetricsDataByMetricType(Metrics metrics) {
+        return dataMetricsMapper.getMetricsDataByMetricType(metrics);
+    }
 }

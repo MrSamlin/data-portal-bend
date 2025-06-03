@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cmfchina.dataportal.mapper.IndicatorMetaMapper">
+    <resultMap id="IndicatorResultMap" type="com.cmfchina.dataportal.entity.Indicator">
+            <id property="id" column="ID"/>
+            <result property="indicatorCode" column="INDICATOR_CODE"/>
+            <result property="indicatorName" column="INDICATOR_NAME"/>
+            <result property="indicatorNameAlias" column="INDICATOR_NAME_ALIAS"/>
+            <result property="category" column="CATEGORY"/>
+            <result property="dataSource" column="DATA_SOURCE"/>
+            <result property="infoSource" column="INFO_SOURCE"/>
+            <result property="unit" column="UNIT"/>
+            <result property="frequency" column="FREQUENCY"/>
+            <result property="indTemplateKey" column="IND_TEMPLATE_KEY"/>
+            <result property="sortWeight" column="SORT_WEIGHT"/>
+            <result property="privateTag" column="PRIVATE_TAG"/>
+            <result property="deleted" column="DELETED"/>
+            <result property="status" column="STATUS"/>
+            <result property="description" column="DESCRIPTION"/>
+            <result property="beginDate" column="BEGIN_DATE"/>
+            <result property="endDate" column="END_DATE"/>
+            <result property="pointSet" column="POINT_SET"/>
+            <result property="indicatorType" column="INDICATOR_TYPE"/>
+            <result property="statisticalMethod" column="STATISTICAL_METHOD"/>
+            <result property="productName" column="PRODUCT_NAME"/>
+            <result property="companyShortname" column="COMPANY_SHORTNAME"/>
+            <result property="brandName" column="BRAND_NAME"/>
+            <result property="industryName" column="INDUSTRY_NAME"/>
+            <result property="applyIndustryName" column="APPLY_INDUSTRY_NAME"/>
+            <result property="area" column="AREA"/>
+            <result property="dim1Name" column="DIM1_NAME"/>
+            <result property="dim1Value" column="DIM1_VALUE"/>
+            <result property="dim2Name" column="DIM2_NAME"/>
+            <result property="dim2Value" column="DIM2_VALUE"/>
+            <result property="dim3Name" column="DIM3_NAME"/>
+            <result property="dim3Value" column="DIM3_VALUE"/>
+            <result property="dim4Name" column="DIM4_NAME"/>
+            <result property="dim4Value" column="DIM4_VALUE"/>
+            <result property="dim5Name" column="DIM5_NAME"/>
+            <result property="dim5Value" column="DIM5_VALUE"/>
+            <result property="dim6Name" column="DIM6_NAME"/>
+            <result property="dim6Value" column="DIM6_VALUE"/>
+            <result property="ctg0" column="CTG_0"/>
+            <result property="ctg1" column="CTG_1"/>
+            <result property="ctg2" column="CTG_2"/>
+            <result property="ctg3" column="CTG_3"/>
+            <result property="ctg4" column="CTG_4"/>
+            <result property="ctg5" column="CTG_5"/>
+            <result property="ctg6" column="CTG_6"/>
+            <result property="ctg7" column="CTG_7"/>
+            <result property="ctg8" column="CTG_8"/>
+            <result property="ctg9" column="CTG_9"/>
+            <result property="futureCol1" column="FUTURE_COL1"/>
+            <result property="futureCol2" column="FUTURE_COL2"/>
+            <result property="futureCol3" column="FUTURE_COL3"/>
+            <result property="futureCol4" column="FUTURE_COL4"/>
+            <result property="futureCol5" column="FUTURE_COL5"/>
+            <result property="futureCol6" column="FUTURE_COL6"/>
+            <result property="updateTime" column="UPDATE_TIME"/>
+            <result property="opdate" column="OPDATE"/>
+            <result property="updatedTime" column="UPDATED_TIME"/>
+            <result property="countCode" column="COUNT_CODE"/>
+            <result property="rownumOfIndicatorType" column="ROWNUM_OF_INDICATOR_TYPE"/>
+            <result property="rownum" column="ROWNUM"/>
+    </resultMap>
+</mapper>

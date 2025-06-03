@@ -53,6 +53,12 @@ public class PortalMetricsController {
         return metricsService.insert(category);
     }
 
+    @PostMapping("/getMetricsDataByMetricType")
+    public List<Metrics> getMetricsDataByMetricType(@RequestBody Metrics metrics) {
+        return metricsService.getMetricsDataByMetricType(metrics);
+    }
+
+
     // 更新数据分类
     @PutMapping
     public int updateCategory(@RequestBody Metrics category) {

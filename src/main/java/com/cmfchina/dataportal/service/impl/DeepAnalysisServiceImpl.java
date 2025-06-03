@@ -57,4 +57,9 @@ public class DeepAnalysisServiceImpl implements DeepAnalysisService {
         return dataDeepAnalysisMapper.getDeepAnalysisTopList(categoryName,contentSize);
     }
 
+    @Override
+    public Boolean addDeepAnalysisPv(Integer id) {
+        return dataDeepAnalysisMapper.addDeepAnalysisPv(id)>0?true:false;
+    }
+
 }

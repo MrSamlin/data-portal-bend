@@ -61,6 +61,12 @@ public class PortalDeepAnalysisController {
     public List<DeepAnalysis> getDeepAnalysisTopList(@PathVariable String themeCode) {
         return deepAnalysisService.getDeepAnalysisTopList(themeCode);
     }
+
+
+    @GetMapping("/addDeepAnalysisPv/{id}")
+    public  Boolean addDeepAnalysisPv(@PathVariable Integer id) {
+        return  deepAnalysisService.addDeepAnalysisPv(id);
+    }
 //
 //    /**
 //     * 搜索分类

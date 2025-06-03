@@ -25,4 +25,7 @@ public interface DeepAnalysisService {
       int countAll(String analysisName);
 
     List<DeepAnalysis> getDeepAnalysisTopList(String themeCode);
+
+
+    Boolean  addDeepAnalysisPv(Integer id);
 }

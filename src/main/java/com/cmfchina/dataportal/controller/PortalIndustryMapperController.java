@@ -1,11 +1,9 @@
 package com.cmfchina.dataportal.controller;
 
-import com.cmfchina.dataportal.entity.Indicator;
 import com.cmfchina.dataportal.entity.IndustryMap;
 import com.cmfchina.dataportal.entity.QueryDao;
 import com.cmfchina.dataportal.entity.Result;
 import com.cmfchina.dataportal.service.IndustryMapperService;
-import com.cmfchina.dataportal.service.OracleDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +20,6 @@ public class PortalIndustryMapperController {
     @Autowired
     private IndustryMapperService industryMapperService;
 
-    @Autowired
-    private OracleDataService oracleDataService;
 
     /**
      * 创建数据分类
@@ -70,12 +66,6 @@ public class PortalIndustryMapperController {
         int totalPages = (int) Math.ceil(temp);
         result.setTotalPages(totalPages);
         return result;
-    }
-
-    @PostMapping("/fetchIndustryDataByIndustry")
-    public  List<Indicator>  fetchIndustryDataByIndustry(@RequestBody QueryDao dao) {
-        List<Indicator> indicators = oracleDataService.fetchIndicatorDataByIndustry(dao.getCategoryName(),dao.getSize());
-        return indicators;
     }
 
 

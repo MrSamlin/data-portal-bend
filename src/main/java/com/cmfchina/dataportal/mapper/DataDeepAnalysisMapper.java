@@ -16,14 +16,14 @@ public interface DataDeepAnalysisMapper {
      * 插入新的深度分析记录
      */
     @Insert("INSERT INTO data_deep_analysis (id, analysis_name, jump_url, view_count, status, publish_date, create_date, update_date, create_user, update_user ,category_name ) " +
-            "VALUES (#{id}, #{analysisName}, #{jumpUrl}, #{viewCount}, #{status}, #{publishDate}, #{createDate}, #{updateDate}, #{createUser}, #{updateUser} ,#{categoryName} )")
+            "VALUES (#{id}, #{analysisName}, #{jumpUrl}, 0 , #{status}, #{publishDate},  NOW(), NOW(), #{createUser}, #{updateUser} ,#{categoryName} )")
     int insert(DeepAnalysis deepAnalysis);
 
     /**
      * 更新深度分析记录
      */
     @Update("UPDATE data_deep_analysis SET analysis_name = #{analysisName}, jump_url = #{jumpUrl}, view_count = #{viewCount}, status = #{status}, " +
-            "publish_date = #{publishDate}, update_date = #{updateDate}, create_user = #{createUser}, update_user = #{updateUser} , category_name=#{categoryName}    WHERE id = #{id}")
+            "publish_date = #{publishDate}, update_date = NOW(), create_user = #{createUser}, update_user = #{updateUser} , category_name=#{categoryName}    WHERE id = #{id}")
     int update(DeepAnalysis deepAnalysis);
 
     /**
@@ -59,4 +59,8 @@ public interface DataDeepAnalysisMapper {
 
     List<DeepAnalysis> getDeepAnalysisTopList( @Param("categoryName")String themeCodeString ,@Param("contentSize")int contentSize);
 
+
+
+    @Update("UPDATE data_deep_analysis   SET view_count = view_count + 1     WHERE id = #{id}")
+    Integer addDeepAnalysisPv(Integer id);
 }
